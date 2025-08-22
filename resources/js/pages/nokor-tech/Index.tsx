@@ -13,14 +13,6 @@ const Index = () => {
     const { topBanners, middleBanners, posts, newArrivalsProducts, products, item_categories } = usePage<any>().props;
     return (
         <NokorTechLayout>
-            <Head>
-                <title>Cambodia's Digital Marketplace</title>
-                <meta
-                    name="description"
-                    content="PG Market is Cambodia's trusted digital marketplace platform, connecting buyers and sellers nationwide with ease, speed, and transparency."
-                />
-            </Head>
-
             <div className="mx-auto mb-10 max-w-[2000px]">
                 {topBanners?.length > 0 && <MySlide slides={topBanners} path="/assets/images/banners/thumb/" />}
             </div>
