@@ -1,6 +1,6 @@
 import MyLoadingAnimationOne from '@/components/MyLoadingAnimationOne';
 import { useCart } from '@/contexts/cart-contexts';
-import { useForm, usePage } from '@inertiajs/react';
+import { router, useForm, usePage } from '@inertiajs/react';
 import axios from 'axios';
 import { ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -137,11 +137,7 @@ const PaymentMethods = () => {
         post(`/orders`, {
             preserveScroll: true,
             onSuccess: (page: any) => {
-                if (paywayReady) {
-                    AbaPayway.checkout();
-                } else {
-                    alert('Payment system not loaded yet, please wait.');
-                }
+                router.visit('/')
                 // if (page.props.flash?.success) {
                 //     toast.success('Success', {
                 //         description: page.props.flash.success,
@@ -194,9 +190,9 @@ const PaymentMethods = () => {
             {paywayReady ? (
                 <button
                     id="checkout_button"
-                    onClick={async () => {
+                    onClick={() => {
                         setIsLoading(true);
-                        await handleGetHash();
+                        // handleGetHash();
                         handleCheckout();
                     }}
                     disabled={!paywayReady}
